@@ -1,28 +1,25 @@
 import { CircularProgress } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { Line } from "react-chartjs-2";
+// import { Line } from "react-chartjs-2";
 import { HistoricalChart } from "../Api/Api";
 import { CryptoState } from "../CryptoContext";
 
 const CoinInfo = ({ coin }) => {
   const [historicData, seHistoricData] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [days, setDays] = useState(1);
 
   const { currency } = CryptoState();
 
   const fetchHistoricData = async () => {
-    setLoading(true);
     const response = await fetch(HistoricalChart(coin.id, days, currency));
     const data = await response.json();
     seHistoricData(data.prices);
-    setLoading(false);
   };
 
 
   useEffect(() => {
     fetchHistoricData();
-  }, [days, currency]);
+  }, [currency, days]);
 
   // const data2 = {
   //   labels: ["Kofi", "Frimpong", "Junior",],
@@ -40,13 +37,13 @@ const CoinInfo = ({ coin }) => {
   return (
     <div className="coin_chart">
       {/* Chart */}
-      {historicData ? (
+      {!historicData ? (
         <CircularProgress
           size={250}
           thickness={1}
           sx={{ color: "goldenrod" }}
         />
-      ) : ( ''
+      ) : (""
           // <Line
           //   data={{
           //     labels: historicData.map((coin) => {

@@ -105,43 +105,37 @@ const CoinsTable = () => {
                         sx={{
                           backgroundColor: "#16171a",
                           cursor: "pointer",
+                          alignItems: "center",
                           "&:hover": {
                             backgroundColor: "#131111",
                           },
                         }}
                       >
-                        <TableCell
-                          component="th"
-                          scope="row"
-                          sx={{
-                            display: "flex",
-                            alignItems: "center",
-                            gap: 2,
-                            cursor: "pointer",
-                          }}
-                        >
-                          <img
-                            src={row?.image}
-                            alt={row?.name}
-                            height="50"
-                            sx={{ mb: 1 }}
-                          />
-                          <div
-                            style={{ diplay: "flex", flexDirection: "column" }}
-                          >
-                            <span
-                              style={{
-                                textTransform: "uppercase",
-                                fontSize: 22,
-                                color: "white",
-                              }}
+                        <TableCell>
+                          <div style={{display:'flex'}}>
+                            <img
+                              src={row?.image}
+                              alt={row?.name}
+                              height="50"
+                              sx={{ mb: 1 }}
+                            />
+                            <div
+                              style={{ diplay: "flex", flexDirection: "column", marginLeft:'30px' }}
                             >
-                              {row.symbol}
-                            </span>{" "}
-                            <br />
-                            <span style={{ color: "darkgrey" }}>
-                              {row.name}
-                            </span>
+                              <span
+                                style={{
+                                  textTransform: "uppercase",
+                                  fontSize: 22,
+                                  color: "white",
+                                }}
+                              >
+                                {row.symbol}
+                              </span>{" "}
+                              <br />
+                              <span style={{ color: "darkgrey" }}>
+                                {row.name}
+                              </span>
+                            </div>
                           </div>
                         </TableCell>
 
@@ -189,9 +183,10 @@ const CoinsTable = () => {
           count={(coins?.length / 10).toFixed(0)}
           onChange={(_, value) => {
             setPage(value);
-            window.scroll(0, 450);
+            window.scroll(0, 400);
           }}
         />
+        <br /><br /> <br />
       </Container>
     </>
   );
